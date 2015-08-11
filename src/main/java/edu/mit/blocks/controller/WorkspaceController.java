@@ -276,13 +276,13 @@ public class WorkspaceController {
      * a language specified in the pre-defined language def file.
      * @param root Loads the language specified in the Element root
      */
-    public void loadBlockLanguage(final Element root) {
+    public void loadBlockLanguage(final Element root, ResourceBundle bundle) {
         /* MUST load shapes before genuses in order to initialize
          connectors within each block correctly */
         BlockConnectorShape.loadBlockConnectorShapes(root);
 
         //load genuses
-        BlockGenus.loadBlockGenera(workspace, root);
+        BlockGenus.loadBlockGenera(workspace, root, bundle);
 
         //load rules
         BlockLinkChecker.addRule(workspace, new CommandRule(workspace));
@@ -410,7 +410,7 @@ public class WorkspaceController {
             resetWorkspace();
         }
         if (langDefDirty) {
-            loadBlockLanguage(langDefRoot);
+            loadBlockLanguage(langDefRoot, langResourceBundle);
         }
         workspace.loadWorkspaceFrom(null, langDefRoot);
         workspaceLoaded = true;
@@ -495,9 +495,9 @@ public class WorkspaceController {
                 resetWorkspace();
             }
             if (langDefContents == null) {
-                loadBlockLanguage(langDefRoot);
+                loadBlockLanguage(langDefRoot, langResourceBundle);
             } else {
-                loadBlockLanguage(langRoot);
+                loadBlockLanguage(langRoot, langResourceBundle);
             }
             workspace.loadWorkspaceFrom(projectRoot, langRoot);
             workspaceLoaded = true;

@@ -27,16 +27,17 @@ import edu.mit.blocks.workspace.Workspace;
 import edu.mit.blocks.workspace.WorkspaceEnvironment;
 
 /**
- * A genus describes the properties that define a block.  For example, fd is a block genus
- * that describes all forward block instances in Starlogo.  The BlockGenus class stores all the immutable
- * properties and socket information of a genus.
+ * A genus describes the properties that define a block. For example, fd is a
+ * block genus that describes all forward block instances in Starlogo. The
+ * BlockGenus class stores all the immutable properties and socket information
+ * of a genus.
  */
 public class BlockGenus {
 
     private static final String EMPTY_STRING = "";
 
     private final WorkspaceEnvironment env;
-   
+
     private String genusName;
     private Color color;
     private String kind;
@@ -86,8 +87,9 @@ public class BlockGenus {
     private List<List<BlockConnector>> expandGroups = new ArrayList<List<BlockConnector>>();
 
     /**
-     * Only BlockGenus can create BlockGenus objects, specifically only the function that loads
-     * BlockGenuses information from the loadString can create BlockGenuses objects
+     * Only BlockGenus can create BlockGenus objects, specifically only the
+     * function that loads BlockGenuses information from the loadString can
+     * create BlockGenuses objects
      */
     private BlockGenus(WorkspaceEnvironment workspaceEnvironment) {
         env = workspaceEnvironment;
@@ -95,6 +97,7 @@ public class BlockGenus {
 
     /**
      * Constructs a BlockGenus copy with the specified genusName
+     *
      * @param genusName
      */
     private BlockGenus(WorkspaceEnvironment workspaceEnvironment, String genusName, String newGenusName) {
@@ -135,10 +138,12 @@ public class BlockGenus {
     }
 
     /**
-     * Returns the siblings of this genus.  If this genus has no siblings, returns an empty list.
-     * Each element in the list is the block genus name of a sibling.
-     * Note: For a genus to have siblings, its label must be uneditable.  An editable label
-     * interferes with the drop down menu widget that blocks with siblings have.
+     * Returns the siblings of this genus. If this genus has no siblings,
+     * returns an empty list. Each element in the list is the block genus name
+     * of a sibling. Note: For a genus to have siblings, its label must be
+     * uneditable. An editable label interferes with the drop down menu widget
+     * that blocks with siblings have.
+     *
      * @return the siblings of this genus.
      */
     public List<String> getSiblingsList() {
@@ -146,9 +151,10 @@ public class BlockGenus {
     }
 
     /**
-     * Returns true if this genus has siblings; false otherwise.
-     * Note: For a genus to have siblings, its label must be uneditable.  An editable label
+     * Returns true if this genus has siblings; false otherwise. Note: For a
+     * genus to have siblings, its label must be uneditable. An editable label
      * interferes with the drop down menu widget that blocks with siblings have.
+     *
      * @return true if this genus has siblings; false otherwise.
      */
     public boolean hasSiblings() {
@@ -156,93 +162,117 @@ public class BlockGenus {
     }
 
     /**
-     * Returns a list of the stub kinds (or stub genus names) of this; if this genus does not have any stubs,
-     * returns an empty list
-     * @return a list of the stub kinds (or stub genus names) of this; if this genus does not have any stubs,
-     * returns an empty list
+     * Returns a list of the stub kinds (or stub genus names) of this; if this
+     * genus does not have any stubs, returns an empty list
+     *
+     * @return a list of the stub kinds (or stub genus names) of this; if this
+     * genus does not have any stubs, returns an empty list
      */
     public Iterable<String> getStubList() {
         return Collections.unmodifiableList(stubList);
     }
 
     /**
-     * Returns true is this genus has stubs (references such as getters, setters, etc.); false otherwise
-     * @return true is this genus has stubs (references such as getters, setters, etc.); false otherwise
+     * Returns true is this genus has stubs (references such as getters,
+     * setters, etc.); false otherwise
+     *
+     * @return true is this genus has stubs (references such as getters,
+     * setters, etc.); false otherwise
      */
     public boolean hasStubs() {
         return (stubList.size() > 0);
     }
 
     /**
-     * Returns true iff any one of the connectors for this genus has default arguments; false otherwise
-     * @return true iff any one of the connectors for this genus has default arguments; false otherwise
+     * Returns true iff any one of the connectors for this genus has default
+     * arguments; false otherwise
+     *
+     * @return true iff any one of the connectors for this genus has default
+     * arguments; false otherwise
      */
     public boolean hasDefaultArgs() {
         return hasDefArgs;
     }
 
     /**
-     * Returns true if this block is a command block (i.e. forward, say, etc.); false otherwise
-     * @return true if this block is a command block (i.e. forward, say, etc.); false otherwise
+     * Returns true if this block is a command block (i.e. forward, say, etc.);
+     * false otherwise
+     *
+     * @return true if this block is a command block (i.e. forward, say, etc.);
+     * false otherwise
      */
     public boolean isCommandBlock() {
         return kind.equals("command");
     }
 
     /**
-     * Returns true if this block is a data block a.k.a. a primitive (i.e. number, string, boolean);
-     * false otherwise
-     * @return Returns true if this block is a data block a.k.a. a primitive (i.e. number, string, boolean);
-     * false otherwise
+     * Returns true if this block is a data block a.k.a. a primitive (i.e.
+     * number, string, boolean); false otherwise
+     *
+     * @return Returns true if this block is a data block a.k.a. a primitive
+     * (i.e. number, string, boolean); false otherwise
      */
     public boolean isDataBlock() {
         return kind.equals("data");
     }
 
     /**
-     * Returns true iff this block is a function block, which takes in an input and produces an
-     * output. (i.e. math blocks, arctan, add to list); false otherwise.
-     * @return true iff this block is a function block, which takes in an input and produces an
-     * output. (i.e. math blocks, arctan, add to list); false otherwise.
+     * Returns true iff this block is a function block, which takes in an input
+     * and produces an output. (i.e. math blocks, arctan, add to list); false
+     * otherwise.
+     *
+     * @return true iff this block is a function block, which takes in an input
+     * and produces an output. (i.e. math blocks, arctan, add to list); false
+     * otherwise.
      */
     public boolean isFunctionBlock() {
         return kind.equals("function");
     }
 
     /**
-     * Returns true if this block is a variable declaration block; false otherwise
-     * @return true if this block is a variable declaration block; false otherwise
+     * Returns true if this block is a variable declaration block; false
+     * otherwise
+     *
+     * @return true if this block is a variable declaration block; false
+     * otherwise
      */
     public boolean isVariableDeclBlock() {
         return kind.equals("variable");
     }
 
     /**
-     * Returns true if this block is a procedure declaration block; false otherwise
-     * @return true if this block is a procedure declaration block; false otherwise
+     * Returns true if this block is a procedure declaration block; false
+     * otherwise
+     *
+     * @return true if this block is a procedure declaration block; false
+     * otherwise
      */
     public boolean isProcedureDeclBlock() {
         return kind.equals("procedure");
     }
 
     /**
-     * Returns true if this block is a procedure parameter block; false otherwise
+     * Returns true if this block is a procedure parameter block; false
+     * otherwise
      */
     public boolean isProcedureParamBlock() {
         return kind.equals("param");
     }
 
     /**
-     * Returns true if this genus is a declaration block.  Declaration blocks define variables and procedures.
+     * Returns true if this genus is a declaration block. Declaration blocks
+     * define variables and procedures.
      */
     public boolean isDeclaration() {
         return this.isVariableDeclBlock() || this.isProcedureDeclBlock();
     }
 
     /**
-     * Returns true if this block is a list or a list operator (determined by whether it has at
-     * least one list connector of any type); false otherwise.
-     * @return is determined by whether it has at least one list connector of any type.
+     * Returns true if this block is a list or a list operator (determined by
+     * whether it has at least one list connector of any type); false otherwise.
+     *
+     * @return is determined by whether it has at least one list connector of
+     * any type.
      */
     public boolean isListRelated() {
         boolean hasListConn = false;
@@ -257,6 +287,7 @@ public class BlockGenus {
 
     /**
      * Returns true if this genus has a "before" connector; false otherwise.
+     *
      * @return true is this genus has a "before" connector; false otherwise.
      */
     public boolean hasBeforeConnector() {
@@ -265,6 +296,7 @@ public class BlockGenus {
 
     /**
      * Returns true if this genus has a "after" connector; false otherwise.
+     *
      * @return true if this genus has a "after" connector; false otherwise.
      */
     public boolean hasAfterConnector() {
@@ -272,10 +304,11 @@ public class BlockGenus {
     }
 
     /**
-     * Returns true if the value of this genus is contained within the label of this; false
-     * otherwise
-     * @return true if the value of this genus is contained within the label of this; false
-     * otherwise
+     * Returns true if the value of this genus is contained within the label of
+     * this; false otherwise
+     *
+     * @return true if the value of this genus is contained within the label of
+     * this; false otherwise
      */
     public boolean isLabelValue() {
         return isLabelValue;
@@ -283,6 +316,7 @@ public class BlockGenus {
 
     /**
      * Returns true if the label of this is editable; false otherwise
+     *
      * @return true if the label of this is editable; false otherwise
      */
     public boolean isLabelEditable() {
@@ -291,6 +325,7 @@ public class BlockGenus {
 
     /**
      * Returns true iff this genus can have page label.
+     *
      * @return true iff this genus can have page label
      */
     public boolean isPageLabelSetByPage() {
@@ -299,6 +334,7 @@ public class BlockGenus {
 
     /**
      * Returns true if the label of this must be unique; false otherwise
+     *
      * @return true if the label of this must be unique; false otherwise
      */
     public boolean labelMustBeUnique() {
@@ -313,8 +349,11 @@ public class BlockGenus {
     }
 
     /**
-     * Returns true iff this genus is an infix operator.  This genus must be supporting two bottom sockets.
-     * @return true iff this genus is an infix operator.  This genus must be supporting two bottom sockets.
+     * Returns true iff this genus is an infix operator. This genus must be
+     * supporting two bottom sockets.
+     *
+     * @return true iff this genus is an infix operator. This genus must be
+     * supporting two bottom sockets.
      */
     public boolean isInfix() {
         return isInfix;
@@ -322,6 +361,7 @@ public class BlockGenus {
 
     /**
      * Returns the name of this genus
+     *
      * @return the name of this genus
      */
     public String getGenusName() {
@@ -330,6 +370,7 @@ public class BlockGenus {
 
     /**
      * Returns the initial label of this
+     *
      * @return the initial label of this
      */
     public String getInitialLabel() {
@@ -338,6 +379,7 @@ public class BlockGenus {
 
     /**
      * Returns the String block label prefix of this
+     *
      * @return the String block label prefix of this
      */
     public String getLabelPrefix() {
@@ -346,6 +388,7 @@ public class BlockGenus {
 
     /**
      * Returns the String block label prefix of this
+     *
      * @return the String block label prefix of this
      */
     public String getLabelSuffix() {
@@ -353,9 +396,10 @@ public class BlockGenus {
     }
 
     /**
-     * Returns the String block text description of this.
-     * Also known as the block tool tip, or block description.
-     * If no descriptions exists, return null.
+     * Returns the String block text description of this. Also known as the
+     * block tool tip, or block description. If no descriptions exists, return
+     * null.
+     *
      * @return the String block text description of this or NULL.
      */
     public String getBlockDescription() {
@@ -363,14 +407,13 @@ public class BlockGenus {
     }
 
     /**
-     * Returns the set of argument descriptions of this.
-     * Argument index to argument description relationship
-     * may not be inferred as one-to-one.  That is, an existing
-     * socket may not have an existing description (in the case
-     * if incomplete descriptions).
-     * An existing description may not have an existing
-     * socket (in the case of expandable socket sizes).
-     * If no descriptions exists, return null.
+     * Returns the set of argument descriptions of this. Argument index to
+     * argument description relationship may not be inferred as one-to-one. That
+     * is, an existing socket may not have an existing description (in the case
+     * if incomplete descriptions). An existing description may not have an
+     * existing socket (in the case of expandable socket sizes). If no
+     * descriptions exists, return null.
+     *
      * @return the String argument descriptions of this or NULL.
      */
     public Iterable<String> getInitialArgumentDescriptions() {
@@ -378,15 +421,20 @@ public class BlockGenus {
     }
 
     /**
-     * Returns the Color of this; May return Color.Black if color was unspecified.
-     * @return the Color of this; May return Color.Black if color was unspecified.
+     * Returns the Color of this; May return Color.Black if color was
+     * unspecified.
+     *
+     * @return the Color of this; May return Color.Black if color was
+     * unspecified.
      */
     public Color getColor() {
         return color;
     }
 
     /**
-     * Returns the initial BlockImageIcon mapping of this.  Returned Map is unmodifiable.
+     * Returns the initial BlockImageIcon mapping of this. Returned Map is
+     * unmodifiable.
+     *
      * @return the initial and unmodifiable BlockImageIcon mapping of this
      */
     public Map<ImageLocation, BlockImageIcon> getInitBlockImageMap() {
@@ -395,8 +443,10 @@ public class BlockGenus {
 
     /**
      * Returns the value of the specified language dependent property
+     *
      * @param property the property to look up
-     * @return the value of the specified language dependent property; null if property does not exist
+     * @return the value of the specified language dependent property; null if
+     * property does not exist
      */
     public String getProperty(String property) {
         return properties.get(property);
@@ -404,6 +454,7 @@ public class BlockGenus {
 
     /**
      * Returns the initial set of sockets of this
+     *
      * @return the initial set of sockets of this
      */
     public Iterable<BlockConnector> getInitSockets() {
@@ -412,6 +463,7 @@ public class BlockGenus {
 
     /**
      * Returns the initial plug connector of this
+     *
      * @return the initial plug connector of this
      */
     public BlockConnector getInitPlug() {
@@ -420,6 +472,7 @@ public class BlockGenus {
 
     /**
      * Returns the initial before connector of this
+     *
      * @return the initial before connector of this
      */
     public BlockConnector getInitBefore() {
@@ -428,6 +481,7 @@ public class BlockGenus {
 
     /**
      * Returns the initial after connector of this
+     *
      * @return the initial after connector of this
      */
     public BlockConnector getInitAfter() {
@@ -442,8 +496,8 @@ public class BlockGenus {
     }
 
     /**
-     * Return the expand-group for the given group. Can be null if group
-     * doesn't exist.
+     * Return the expand-group for the given group. Can be null if group doesn't
+     * exist.
      */
     private static List<BlockConnector> getExpandGroup(List<List<BlockConnector>> groups, String group) {
         for (List<BlockConnector> list : groups) {
@@ -468,31 +522,31 @@ public class BlockGenus {
     }
 
     /**
-     * Modified to translate the ToolTip
-	 *  ldgneto@gmail.com 
-	 * */
-    private static void loadGenusDescription(NodeList descriptions, BlockGenus genus, String attribName) {
-        Node description;        
-		ResourceBundle bundle = ResourceBundle.getBundle("com/ardublock/block/ardublock");	
-		for (int k = 0; k < descriptions.getLength(); k++) {
-			description = descriptions.item(k);	
-			if (description.getNodeName().equals("text") && !attribName.equals(null)) {
-				try{//Trying to bundle the attribute
-					genus.blockDescription = bundle.getString("tip." + attribName);
-				}catch (MissingResourceException e) {
-					genus.blockDescription = description.getTextContent();
-				}
-			} else if (description.getNodeName().equals("arg-description")) {
-				String argumentDescription = description.getTextContent();
-				if (argumentDescription != null) {
-					genus.argumentDescriptions.add(argumentDescription);
-				}
-			}
-		}
+     * Modified to translate the ToolTip ldgneto@gmail.com 
+	 *
+     */
+    private static void loadGenusDescription(NodeList descriptions, BlockGenus genus, String attribName, ResourceBundle bundle) {
+        Node description;
+        for (int k = 0; k < descriptions.getLength(); k++) {
+            description = descriptions.item(k);
+            if (description.getNodeName().equals("text") && !attribName.equals(null)) {
+                try {//Trying to bundle the attribute
+                    genus.blockDescription = bundle.getString("tip." + attribName);
+                } catch (MissingResourceException e) {
+                    genus.blockDescription = description.getTextContent();
+                }
+            } else if (description.getNodeName().equals("arg-description")) {
+                String argumentDescription = description.getTextContent();
+                if (argumentDescription != null) {
+                    genus.argumentDescriptions.add(argumentDescription);
+                }
+            }
+        }
     }
 
     /**
      * Loads the BlockConnector information of the specified genus
+     *
      * @param workspace The workspace in use
      * @param connectors NodeList of connector information to load from
      * @param genus BlockGenus to load block connector information onto
@@ -615,6 +669,7 @@ public class BlockGenus {
 
     /**
      * Loads the images to be drawn on the visible block instances of this
+     *
      * @param images NodeList of image information to load from
      * @param genus BlockGenus instance to load images onto
      */
@@ -666,10 +721,10 @@ public class BlockGenus {
                         if (imageLocationNode.getNodeName().equals("FileLocation")) {
                             String fileLocation = imageLocationNode.getTextContent();
                             try {
-                            	URL fileURL = BlockGenus.class.getClassLoader().getResource(fileLocation);
-                            	if (fileURL == null ) {
-                            		fileURL = new URL("file", "", /*workingDirectory +*/ fileLocation);
-                            	}
+                                URL fileURL = BlockGenus.class.getClassLoader().getResource(fileLocation);
+                                if (fileURL == null) {
+                                    fileURL = new URL("file", "", /*workingDirectory +*/ fileLocation);
+                                }
                                 if (fileURL != null && location != null) {
                                     //translate location String to ImageLocation representation
                                     ImageLocation imgLoc = ImageLocation.getImageLocation(location);
@@ -694,6 +749,7 @@ public class BlockGenus {
 
     /**
      * Loads the language definition properties of the specified genus
+     *
      * @param properties NodeList of properties to load from file
      * @param genus BlockGenus to load the properties onto
      */
@@ -729,6 +785,7 @@ public class BlockGenus {
 
     /**
      * Loads the stub information of the specified genus
+     *
      * @param stubs NodeList of stub information to load
      * @param genus BlockGenus to load stub information onto
      */
@@ -770,12 +827,14 @@ public class BlockGenus {
     }
 
     /**
-     * Loads the all the initial BlockGenuses and BlockGenus families of this language
+     * Loads the all the initial BlockGenuses and BlockGenus families of this
+     * language
+     *
      * @param workspace The workspace in use
      * @param root the Element carrying the specifications of the BlockGenuses
      */
-    public static void loadBlockGenera(Workspace workspace, Element root) {
-    	WorkspaceEnvironment env = workspace.getEnv();
+    public static void loadBlockGenera(Workspace workspace, Element root, ResourceBundle bundle) {
+        WorkspaceEnvironment env = workspace.getEnv();
 
         Pattern attrExtractor = Pattern.compile("\"(.*)\"");
         Matcher nameMatcher;
@@ -881,7 +940,7 @@ public class BlockGenus {
                     genusChild = genusChildren.item(j);
                     if (genusChild.getNodeName().equals("description")) {
                         /// LOAD BLOCK GENUS DESCRIPTION ///
-                        loadGenusDescription(genusChild.getChildNodes(), newGenus, attribName);
+                        loadGenusDescription(genusChild.getChildNodes(), newGenus, attribName, bundle);
                     } else if (genusChild.getNodeName().equals("BlockConnectors")) {
                         /// LOAD BLOCK CONNECTOR INFORMATION ///
                         loadBlockConnectorInformation(workspace, genusChild.getChildNodes(), newGenus);
@@ -943,6 +1002,7 @@ public class BlockGenus {
                     ArrayList<String> newFamList = new ArrayList<String>(famList);
                     newFamList.remove(memName); //filter out current memName, so that only
                     //sibling names are included
+                    System.out.println(memName);
                     env.getGenusWithName(memName).familyList = newFamList;
                 }
             }
