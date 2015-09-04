@@ -1002,7 +1002,7 @@ public class BlockGenus {
                     ArrayList<String> newFamList = new ArrayList<String>(famList);
                     newFamList.remove(memName); //filter out current memName, so that only
                     //sibling names are included
-                    System.out.println(memName);
+                    //System.out.println(memName);
                     env.getGenusWithName(memName).familyList = newFamList;
                 }
             }
