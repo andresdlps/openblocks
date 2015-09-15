@@ -496,10 +496,12 @@ public class WorkspaceController {
             }
             if (langDefContents == null) {
                 loadBlockLanguage(langDefRoot, langResourceBundle);
+                workspace.loadWorkspaceFrom(projectRoot, langDefRoot);
             } else {
                 loadBlockLanguage(langRoot, langResourceBundle);
+                workspace.loadWorkspaceFrom(projectRoot, langRoot);
             }
-            workspace.loadWorkspaceFrom(projectRoot, langRoot);
+            
             workspaceLoaded = true;
 
         } catch (ParserConfigurationException e) {
